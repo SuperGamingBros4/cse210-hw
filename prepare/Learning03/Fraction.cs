@@ -5,8 +5,8 @@ public class Fraction
 
     public Fraction()
     {
-        _top = 1;
-        _bottom = 1;
+        SetTop(1);
+        SetBottom(1);
     }
     public Fraction(int wholeNumber)
     {
@@ -17,14 +17,14 @@ public class Fraction
         //    1
         //
 
-        _top = wholeNumber;
-        _bottom = 1;
+        SetTop(wholeNumber);
+        SetBottom(1);
     }
 
     public Fraction(int top, int bottom)
     {
-        _top = top;
-        _bottom = bottom;
+        SetTop(top);
+        SetBottom(bottom);
     }
 
     // Getters and Setters

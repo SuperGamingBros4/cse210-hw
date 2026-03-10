@@ -21,6 +21,10 @@ class Program
         Console.WriteLine(frac4.GetFractionString());
         Console.WriteLine(frac4.GetDecimalValue());
 
+        Fraction frac5 = new Fraction(10, 0);
+        Console.WriteLine(frac5.GetFractionString());
+        Console.WriteLine(frac5.GetDecimalValue());
+
         // Test the setter methods:
         Fraction frac = new Fraction();
         Random rand = new Random();
