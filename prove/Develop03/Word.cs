@@ -5,8 +5,8 @@ public class Word
 
     public Word(string word)
     {
-        _content = word;
-        _visibility = true;
+        SetContent(word);
+        SetVisibility(true);
     }
 
     public string GetDisplay()
