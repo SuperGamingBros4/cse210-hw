@@ -44,6 +44,7 @@ public class Reference
             return false;
         }
 
+        // Parse the lhs (left-hand side)
         string lhs = sides[0];
         for (int i = lhs.Length - 1; i >= 0; i--)
         {
@@ -78,6 +79,7 @@ public class Reference
             }
         }
 
+        // Parse the rhs (right-hand side)
         string rhs = sides[1];
         string[] rhsSplit = rhs.Split('-', StringSplitOptions.TrimEntries);
 
@@ -109,6 +111,7 @@ public class Reference
             return false;
         }
 
+        // Set the reference's attributes with the deserialized information
         SetBook(book);
         SetChapter(chapter);
         SetVerseRange(verse, endVerse);
@@ -140,7 +143,7 @@ public class Reference
     {
         return _book;
     }
-    public void SetBook(string book)
+    private void SetBook(string book)
     {
         _book = book;
     }
@@ -148,7 +151,7 @@ public class Reference
     {
         return _chapter;
     }
-    public void SetChapter(int chapter)
+    private void SetChapter(int chapter)
     {
         if (chapter < 1)
         {
@@ -161,7 +164,7 @@ public class Reference
     {
         return _verse;
     }
-    public void SetVerse(int verse)
+    private void SetVerse(int verse)
     {
         // Sets the reference to a single verse
         if (verse < 1)
@@ -172,11 +175,16 @@ public class Reference
         _verse = verse;
         _endVerse = verse;
     }
-    public void SetVerseRange(int startVerse, int endVerse)
+    private void SetVerseRange(int startVerse, int endVerse)
     {
         if (startVerse < 1)
         {
             Console.WriteLine("Error: startVerse is less than 1");
+            return;
+        }
+        else if (endVerse < startVerse)
+        {
+            Console.WriteLine("Error: endVerse is less than startVerse");
             return;
         }
         else if (endVerse < 1)
