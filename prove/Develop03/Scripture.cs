@@ -39,7 +39,7 @@ public class Scripture
     public void Display()
     {
         // Display the scripture as "(reference): (body)"
-        Console.Write($"{_reference}:");
+        Console.Write($"{_reference}");
         foreach (Word word in _words)
         {
             // Place a space followed by the word into the console
@@ -48,9 +48,8 @@ public class Scripture
         }
         Console.WriteLine();
     }
-    public void HideRandomWords(int count)
+    private List<Word> GetVisibleWords()
     {
-        // Create a list of visible words to avoid trying to hide already hidden words
         List<Word> visibleWords = new List<Word>();
         foreach (Word word in _words)
         {
@@ -59,6 +58,19 @@ public class Scripture
                 visibleWords.Add(word);
             }
         }
+
+        return visibleWords;
+    }
+    public bool IsFullyHidden()
+    {
+        // Checks if the count is equal to zero
+        List<Word> visibleWords = GetVisibleWords();
+        return visibleWords.Count == 0;
+    }
+    public void HideRandomWords(int count)
+    {
+        // Create a list of visible words to avoid trying to hide already hidden words
+        List<Word> visibleWords = GetVisibleWords();
 
         Random random = new Random();
         while (count-- > 0 && visibleWords.Count > 0)
