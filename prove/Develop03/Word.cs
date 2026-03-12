@@ -1,25 +1,25 @@
 public class Word
 {
     private string _content;
-    private bool _visibility;
+    private bool _visible;
 
     public Word(string word)
     {
-        SetContent(word);
-        SetVisibility(true);
+        _content = word;
+        SetVisible(true);
     }
 
     public string GetDisplay()
     {
-        if (_visibility)
+        if (IsVisible())
         {
-            // Return the word content if it is visible
-            return _content;
+            // If it is visible, return the word content
+            return GetRawContent();
         }
         else
         {
-            // Return a string of '_' the same length as the content if it is
-            // invisible
+            // If it is invisible, return a string of '_' the same length as the
+            // content
             return new string('_', _content.Length);
         }
     }
@@ -30,20 +30,16 @@ public class Word
         return GetDisplay();
     }
 
-    public string GetContent()
+    public string GetRawContent()
     {
         return _content;
     }
-    public void SetContent(string content)
+    public bool IsVisible()
     {
-        _content = content;
+        return _visible;
     }
-    public bool GetVisibility()
+    public void SetVisible(bool visible)
     {
-        return _visibility;
-    }
-    public void SetVisibility(bool visibility)
-    {
-        _visibility = visibility;
+        _visible = visible;
     }
 }
