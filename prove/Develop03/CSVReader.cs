@@ -143,7 +143,6 @@ public class CSVReader
 
         return values;
     }
-
     public List<List<string>> ReadAllRows()
     {
         // The list of rows with values
@@ -168,5 +167,8 @@ public class CSVReader
         }
         
         return rowList;
+    }
+    public void Close(){
+        _streamReader.Close();
     }
 }
