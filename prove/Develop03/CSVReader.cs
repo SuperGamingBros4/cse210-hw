@@ -34,7 +34,7 @@ public class CSVReader
         // Read a row (a line) from the file with the reader
         string? row = _streamReader.ReadLine();
 
-        if (row is null)
+        if (row is null || row.IsWhiteSpace())
         {
             return null;
         }
@@ -42,29 +42,95 @@ public class CSVReader
         // The list of values from the row
         List<string> values = new List<string>();
 
-        bool isInValue = false;
+        // In a value surrounded by quotes
+        bool inQuotes = false;
+        // In a value NOT surrounded by quotes
+        bool inValue = true;
+
+        // Initially check if the first character in the row is a quotation mark
+        if (row[0] == '"')
+        {
+            inValue = false;
+            inQuotes = true;
+        }
+
         int j = 0;
+        // Go forward through the row and parse it
         for (int i = 0; i < row.Length; i++)
         {
-            if (!isInValue && row[i] == '"')
+            if (inValue)
             {
-                // Search for the first quotation mark outside of a value to be the beginning. 
-                isInValue = true;
-                j = i + 1;
-            }
-            else if (isInValue && row[i] == ',')
-            {
-                isInValue = !IsEnd(row, i-1, j);
-                if (!isInValue)
+                if (row[i] == ',')
                 {
-                    string capture = row.Substring(j, i-j-1);
+                    // This is the end of the value
+                    inValue = false;
+
+                    // Capture the value and add it to the values list
+                    string capture = row.Substring(j, i-j);
+                    values.Add(capture);
+
+                    // If this is the last character, add an extra value
+                    if (i == row.Length - 1)
+                    {
+                        // The final character is a comma, so the last value is empty
+                        values.Add("");
+                    }
+                    else
+                    {
+                        // Step the pointer back because it will be stepped forward again in
+                        // the next iteration, so that it will catch the next value.
+                        i--;
+                    }
+                }
+                else if (i == row.Length - 1)
+                {
+                    // This is the end of the value
+                    inValue = false;
+
+                    // Capture the value and add it to the values list
+                    string capture = row.Substring(j, i-j+1);
                     values.Add(capture);
                 }
             }
-            else if (isInValue && i >= row.Length - 1 && row[i] == '"')
+            else if (inQuotes)
             {
-                string capture = row.Substring(j, i-j);
-                values.Add(capture);
+                if (row[i] == ',')
+                {
+                    // Check if this is the end of the value surrounded by quotes
+                    inQuotes = !IsEnd(row, i-1, j);
+                    if (!inQuotes)
+                    {
+                        // Capture the value within the quotes and add it to the values list
+                        string capture = row.Substring(j, i - j - 1);
+                        values.Add(capture);
+                    }
+                }
+                else if (i == row.Length - 1)
+                {
+                    // Check if this is the end of the value surrounded by quotes
+                    inQuotes = !IsEnd(row, i, j);
+                    if (!inQuotes)
+                    {
+                        // Capture the value within the quotes and add it to the values list
+                        string capture = row.Substring(j, i - j);
+                        values.Add(capture);
+                    }
+                }
+            }
+            else if (!inQuotes || !inValue)
+            {
+                if (row[i] == ',' && row[i+1] != '"')
+                {
+                    // Search for values not encapsulated by quotes
+                    inValue = true;
+                    j = i + 1;
+                }
+                else if (row[i] == '"')
+                {
+                    // Search for values encapsulated by quotes
+                    inQuotes = true;
+                    j = i + 1;
+                }
             }
         }
 
