@@ -83,4 +83,12 @@ public class Scripture
             visibleWords.Remove(word);
         }
     }
+    public void UnHide()
+    {
+        // Unhide each word in the scripture
+        foreach (Word word in _words)
+        {
+            word.SetVisible(true);
+        }
+    }
 }
