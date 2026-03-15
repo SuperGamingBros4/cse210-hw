@@ -46,7 +46,7 @@ class Program
         List<Scripture> scriptures = new List<Scripture>();
 
         // Loop through each row in the CSV file except the header
-        foreach (List<string> row in reader.ReadAllRows().Skip(1))
+        foreach (List<string> row in reader.ReadRemainingRows().Skip(1))
         {
             // Create a scripture from the reference and the scripture body
             Scripture readScripture = new Scripture(row[0], row[1]);

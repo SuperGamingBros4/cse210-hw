@@ -143,7 +143,7 @@ public class CSVReader
 
         return values;
     }
-    public List<List<string>> ReadAllRows()
+    public List<List<string>> ReadRemainingRows()
     {
         // The list of rows with values
         List<List<string>> rowList = new List<List<string>>();
