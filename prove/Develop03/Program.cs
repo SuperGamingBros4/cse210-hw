@@ -1,6 +1,15 @@
 using System;
 using System.Collections.Generic;
 
+/*
+ *
+ *  Creativity and exceeding requirements:
+ *  I added the ability to load a list of scriptures from a CSV file.
+ *  The program also allows the user to keep selecting different, random scriptures
+ *    and practice as many times as they like before exiting the program.
+ *
+ */
+
 class Program
 {
     static void MemorizeScripture(Scripture scripture)
