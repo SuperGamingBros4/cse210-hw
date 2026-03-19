@@ -69,7 +69,7 @@ public class Activity
     {
         _endTime = DateTime.Now.AddSeconds(_duration);
     }
-    public bool DurationElapsed()
+    protected bool DurationElapsed()
     {
         // Return true if the current time is past the end time
         return DateTime.Now > _endTime;
@@ -93,7 +93,7 @@ public class Activity
         // Clear the console after finishing an activity
         Console.Clear();
     }
-    public static void PauseWithSpinner(int duration)
+    protected static void PauseWithSpinner(int duration)
     {
         // A list of bars to cycle through to create the spinner
         string[] bars = ["|", "/", "—", "\\"];
@@ -123,7 +123,7 @@ public class Activity
         // Add a newline after the spinner
         Console.WriteLine();
     }
-    public static void PauseWithCountdown(int duration)
+    protected static void PauseWithCountdown(int duration)
     {
         // Count down from the duration to the end
         for (int i = duration; i > 0; i--)
