@@ -1,6 +1,6 @@
 using System;
 
-public class ReflectionActivity : Activity
+public class ReflectingActivity : Activity
 {
     private List<string> _prompts = new List<string>([
         "Think of a time when you stood up for someone else.",
@@ -20,8 +20,8 @@ public class ReflectionActivity : Activity
         "How can you keep this experience in mind in the future?"
     ]);
 
-    public ReflectionActivity() : base(
-        "Reflection Activity",
+    public ReflectingActivity() : base(
+        "Reflecting Activity",
         "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life."
     )
     {
@@ -79,12 +79,14 @@ public class ReflectionActivity : Activity
     {
         Random random = new Random();
 
+        // Return a random prompt from _prompts
         return _prompts[random.Next(_prompts.Count)];
     }
     public string GetQuestion()
     {
         Random random = new Random();
 
+        // Return a question prompt from _questions
         return _questions[random.Next(_questions.Count)];
     }
 }
