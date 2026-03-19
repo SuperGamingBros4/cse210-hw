@@ -34,6 +34,15 @@ public class Activity
 
         // Set the duration
         SetDuration(duration);
+
+        // Clear the console before starting the activity
+        Console.Clear();
+
+        // Display the "get ready" message
+        Console.WriteLine("Get ready...");
+
+        // Pause for 5 seconds
+        PauseWithSpinner(5);
     }
     private static int PromptDuration()
     {

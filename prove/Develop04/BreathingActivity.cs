@@ -15,9 +15,6 @@ public class BreathingActivity : Activity
         // Display the start message
         ShowStartMessage();
 
-        // Clear the console before starting the activity
-        Console.Clear();
-
         // Display the "get ready" message
         Console.WriteLine("Get ready...");
 
