@@ -53,9 +53,6 @@ public class ReflectingActivity : Activity
         // Pause for 5 seconds
         PauseWithCountdown(5);
 
-        // Clear the console before showing the questions
-        Console.Clear();
-
         // Start the timer
         StartTimer();
 
