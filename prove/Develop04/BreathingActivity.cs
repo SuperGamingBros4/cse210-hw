@@ -15,18 +15,12 @@ public class BreathingActivity : Activity
         // Display the start message
         ShowStartMessage();
 
-        // Display the "get ready" message
-        Console.WriteLine("Get ready...");
-
-        // Pause for 5 seconds
-        PauseWithSpinner(5);
-
-        // Start the timer
-        StartTimer();
-
         // Set the breathe in and out durations
         int breatheInDuration = 3;
         int breatheOutDuration = 4;
+
+        // Start the timer
+        StartTimer();
 
         // Keep running until the activity is over
         while (!DurationElapsed())
