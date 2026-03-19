@@ -54,10 +54,11 @@ public class Activity
         if (duration > 0)
         {
             _duration = duration;
-
-            // Set the end time to now + duration
-            _endTime = DateTime.Now.AddSeconds(duration);
         }
+    }
+    protected void StartTimer()
+    {
+        _endTime = DateTime.Now.AddSeconds(_duration);
     }
     public bool DurationElapsed()
     {
