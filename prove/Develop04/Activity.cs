@@ -114,7 +114,7 @@ public class Activity
             i++;
 
             // Pause for a moment
-            Thread.Sleep(500);
+            Thread.Sleep(300);
 
             // Replace the spinner character with a space and move back a character
             Console.Write("\b \b");
