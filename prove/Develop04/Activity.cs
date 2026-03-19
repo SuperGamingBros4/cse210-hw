@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 
 public class Activity
 {
@@ -15,9 +16,11 @@ public class Activity
 
     protected void ShowStartMessage()
     {
+        // Clear the console before showing the start message
+        Console.Clear();
+
         // Display the welcome message
-        Console.Write("Welcome to the ");
-        Console.WriteLine(_title);
+        Console.Write($"Welcome to the {_title}");
 
         Console.WriteLine();
 
@@ -71,13 +74,14 @@ public class Activity
         // Wait for 5 seconds with a spinner
         PauseWithSpinner(5);
 
-        Console.WriteLine();
-
         // Display a "you completed X seconds of the (activity)" message
-        Console.WriteLine($"You have completed another {_duration} of the {_title}.");
+        Console.WriteLine($"You have completed another {_duration} seconds of the {_title}.");
 
         // Pause with a spinner for another 5 seconds
         PauseWithSpinner(5);
+
+        // Clear the console after finishing an activity
+        Console.Clear();
     }
     public static void PauseWithSpinner(int duration)
     {
@@ -93,22 +97,21 @@ public class Activity
         // Continue until the current time is past the end time
         while (DateTime.Now <= endTime)
         {
-            // Display the current spinner rotation
-            Console.Write(bars[i]);
+            // Display the current spinner rotation, wrapping i around with
+            // the amount of rotations
+            Console.Write(bars[i % bars.Length]);
+            // Increment i
+            i++;
 
             // Pause for a moment
             Thread.Sleep(500);
 
-            // Increment i, making sure that it wraps around
-            i++;
-            if (i >= bars.Length)
-            {
-                i = 0;
-            }
-
             // Replace the spinner character with a space and move back a character
             Console.Write("\b \b");
         }
+
+        // Add a newline after the spinner
+        Console.WriteLine();
     }
     public static void PauseWithCountdown(int duration)
     {
@@ -131,5 +134,8 @@ public class Activity
                 Console.Write("\b \b");
             }
         }
+
+        // Add a newline after the countdown
+        Console.WriteLine();
     }
 }
