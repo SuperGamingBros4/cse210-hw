@@ -9,12 +9,14 @@ public class ListingActivity : Activity
         "When have you felt the Holy Ghost this month?",
         "Who are some of your personal heroes?"
     ]);
+    private List<string> _availablePrompts = new List<string>();
     public ListingActivity() : base(
         "Listing Activity",
         "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area."
     )
     {
-
+        // Set the available prompts to a reset state
+        ResetAvailablePrompts();
     }
 
     public void Start()
@@ -62,11 +64,35 @@ public class ListingActivity : Activity
         // Display the finish message
         Finish();
     }
-    public string GetPrompt()
+    private void ResetAvailablePrompts()
+    {
+        // Clear the available prompts before adding prompts
+        _availablePrompts.Clear();
+        
+        // Copy _prompts into _availablePrompts
+        foreach (string prompt in _prompts)
+        {
+            _availablePrompts.Add(prompt);
+        }
+    }
+    private string GetPrompt()
     {
         Random random = new Random();
 
-        // Return a random prompt from _prompts
-        return _prompts[random.Next(_prompts.Count)];
+        // Reset the available prompts if it is empty
+        if (_availablePrompts.Count == 0)
+            ResetAvailablePrompts();
+
+        // Get a random index into the available prompts
+        int index = random.Next(_availablePrompts.Count);
+
+        // Get the prompt at index from the available prompts
+        string prompt = _availablePrompts[index];
+
+        // Remove the prompt from the available prompts
+        _availablePrompts.RemoveAt(index);
+
+        // Return the prompt
+        return prompt;
     }
 }

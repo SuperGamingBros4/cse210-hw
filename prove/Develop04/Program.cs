@@ -1,5 +1,13 @@
 using System;
 
+/*
+ *  Creativity and exceeding requirements:
+ *  Made it so that prompts and questions are not repeated until they have all
+ *     been used at least once.
+ *
+ *
+ */
+
 class Program
 {
     static void ShowMenu()
