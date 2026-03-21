@@ -72,7 +72,7 @@ public class Activity
     protected bool DurationElapsed()
     {
         // Return true if the current time is past the end time
-        return DateTime.Now > _endTime;
+        return DateTime.Now >= _endTime;
     }
     protected void Finish()
     {
