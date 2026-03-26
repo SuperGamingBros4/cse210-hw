@@ -8,10 +8,10 @@ public abstract class Goal
 
     public Goal()
     {
-        Prompt();
+
     }
 
-    protected virtual void Prompt()
+    public virtual void Prompt()
     {
         // Prompt for the name of the goal
         Console.Write("What is the name of your goal? ");

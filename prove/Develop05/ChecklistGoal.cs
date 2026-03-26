@@ -11,7 +11,7 @@ public class ChecklistGoal : Goal
 
     }
 
-    protected override void Prompt()
+    public override void Prompt()
     {
         // Prompt for the common elements
         base.Prompt();
