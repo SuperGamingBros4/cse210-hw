@@ -1,8 +1,8 @@
 public class ChecklistGoal : Goal
 {
-    protected int _completedCount = 0;
-    protected int _maxComplete = 0;
-    protected int _bonusPoints = 0;
+    private int _completedCount = 0;
+    private int _maxComplete = 0;
+    private int _bonusPoints = 0;
 
     public ChecklistGoal() : base()
     {

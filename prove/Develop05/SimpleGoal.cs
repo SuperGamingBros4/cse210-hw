@@ -1,6 +1,6 @@
 public class SimpleGoal : Goal
 {
-    protected bool _completed = false;
+    private bool _completed = false;
 
     public SimpleGoal() : base()
     {
