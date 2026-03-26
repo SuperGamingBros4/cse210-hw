@@ -39,7 +39,7 @@ public abstract class Goal
             _points = 0;
         }
     }
-    public int GetPoints()
+    public virtual int GetPoints()
     {
         return _points;
     }
