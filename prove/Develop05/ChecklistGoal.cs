@@ -23,8 +23,30 @@ public class ChecklistGoal : Goal
         int bonusPoints = int.Parse(Console.ReadLine());
 
         // Set the class attributes
-        _maxComplete = maxComplete;
-        _bonusPoints = bonusPoints;
+        SetMaxComplete(maxComplete);
+        SetBonusPoints(bonusPoints);
+    }
+    private void SetMaxComplete(int maxComplete)
+    {
+        if (maxComplete > 0)
+        {
+            _maxComplete = maxComplete;
+        }
+        else
+        {
+            _maxComplete = 0;
+        }
+    }
+    private void SetBonusPoints(int bonusPoints)
+    {
+        if (bonusPoints > 0)
+        {
+            _bonusPoints = bonusPoints;
+        }
+        else
+        {
+            _bonusPoints = 0;
+        }
     }
     public override int GetPoints()
     {
