@@ -22,7 +22,7 @@ public abstract class Goal
         string description = Console.ReadLine();
 
         // Prompt for the points the goal is worth
-        Console.Write("What is the amounts of points associated with this goal? ");
+        Console.Write("What is the amount of points associated with this goal? ");
         int points = int.Parse(Console.ReadLine());
 
         // Set the class attributes
