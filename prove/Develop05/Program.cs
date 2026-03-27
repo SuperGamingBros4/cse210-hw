@@ -1,9 +1,150 @@
 using System;
+using System.Collections.Generic;
 
 class Program
 {
+    static void DisplayMenu()
+    {
+        Console.WriteLine("Menu Options:");
+        Console.WriteLine("  1. Create new goal");
+        Console.WriteLine("  2. List goals");
+        Console.WriteLine("  3. Save goals");
+        Console.WriteLine("  4. Load goals");
+        Console.WriteLine("  5. Record event");
+        Console.WriteLine("  6. Quit");
+    }
+    static void DisplayGoalTypes()
+    {
+        Console.WriteLine("The types of goals are:");
+        Console.WriteLine("  1. Simple Goal");
+        Console.WriteLine("  2. Eternal Goal");
+        Console.WriteLine("  3. Checklist Goal");
+    }
+    static void ListGoals(List<Goal> goals)
+    {
+        Console.WriteLine("The goals are:");
+        for (int i = 0; i < goals.Count; i++)
+        {
+            // Get the goal at `i` from the list
+            Goal goal = goals[i];
+
+            // Display the goal
+            Console.Write($"  {i+1}. ");
+            Console.WriteLine(goal.GetDisplay());
+        }
+    }
+    static string PromptFileName()
+    {
+        // Prompt for a file name
+        Console.Write("What is the file name for the goal file? ");
+        string filename = Console.ReadLine();
+
+        return filename;
+    }
+
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop05 World!");
+        // Create a list of the goals
+        List<Goal> goals = new List<Goal>();
+
+        int points = 0;
+
+        bool running = true;
+        while (running)
+        {
+            // Show how many points the user has
+            Console.WriteLine($"\nYou have {points} points.\n");
+
+            // Show the menu to the user
+            DisplayMenu();
+
+            // Prompt for a choice
+            Console.Write("Select a choice from the menu: ");
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                // 1. Create new goal
+                case "1":
+                    DisplayGoalTypes();
+
+                    // Prompt for the goal type
+                    Console.Write("Which type of goal would you like to create? ");
+                    string goalType = Console.ReadLine();
+
+                    Goal newGoal = null;
+
+                    switch (goalType)
+                    {
+                        // 1. Simple Goal
+                        case "1":
+                            newGoal = new SimpleGoal();
+                            break;
+                        // 2. Eternal Goal
+                        case "2":
+                            newGoal = new EternalGoal();
+                            break;
+                        // 3. Checklist Goal
+                        case "3":
+                            newGoal = new ChecklistGoal();
+                            break;
+                    }
+
+                    // Exit if the goal was not assigned
+                    if (newGoal == null)
+                        break;
+
+                    // Prompt for and set the goal attributes
+                    newGoal.Prompt();
+
+                    // Add the goal to the list of goals
+                    goals.Add(newGoal);
+                    break;
+                // 2. List goals
+                case "2":
+                    ListGoals(goals);
+                    break;
+                // 3. Save goals
+                case "3":
+                    break;
+                // 4. Load goals
+                case "4":
+                    break;
+                // 5. Record event
+                case "5":
+                    // List the goals
+                    ListGoals(goals);
+
+                    // Prompt for the goal to complete
+                    Console.Write("Which goal did you accomplish? ");
+                    int completedGoalIndex = int.Parse(Console.ReadLine()) - 1;
+
+                    // Exit if the index is invalid
+                    if (completedGoalIndex > goals.Count - 1 || completedGoalIndex < 0)
+                        break;
+
+                    // Get the goal from the list
+                    Goal completedGoal = goals[completedGoalIndex];
+
+                    if (!completedGoal.IsComplete()){
+                        // Complete the goal
+                        completedGoal.Complete();
+
+                        // Get the points earned
+                        int earnedPoints = completedGoal.GetPoints();
+
+                        // Display a congratulating message
+                        Console.WriteLine($"Congratulations! You have earned {earnedPoints} points.");
+
+                        // Add the earned points to the total
+                        points += earnedPoints;
+                    }
+                    break;
+                // 6. Quit
+                case "6":
+                    running = false;
+                    break;
+            }
+        }
     }
 }
