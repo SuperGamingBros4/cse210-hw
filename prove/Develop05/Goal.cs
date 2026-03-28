@@ -73,6 +73,7 @@ public abstract class Goal
         _points = int.Parse(rowValues[3]);
     }
 
+    public abstract string GetGoalType();
     public abstract bool IsComplete();
     public abstract void Complete();
 }

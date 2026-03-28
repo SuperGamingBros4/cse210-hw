@@ -9,6 +9,10 @@ public class EternalGoal : Goal
 
     }
 
+    public override string GetGoalType()
+    {
+        return "EternalGoal";
+    }
     public override bool IsComplete()
     {
         // Always return false. EternalGoal can never be completed
@@ -21,7 +25,7 @@ public class EternalGoal : Goal
     public override string Serialize()
     {
         // Serialize the goal to be saved
-        return $"EternalGoal,{base.Serialize()}";
+        return $"{base.Serialize()}";
     }
     protected override void Deserialize(List<string> rowValues)
     {

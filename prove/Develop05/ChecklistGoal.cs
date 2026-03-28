@@ -15,6 +15,10 @@ public class ChecklistGoal : Goal
 
     }
 
+    public override string GetGoalType()
+    {
+        return "ChecklistGoal";
+    }
     public override void Prompt()
     {
         // Prompt for the common elements
@@ -88,7 +92,7 @@ public class ChecklistGoal : Goal
     public override string Serialize()
     {
         // Serialize the goal to be saved
-        return $"ChecklistGoal,{base.Serialize()},{_completedCount},{_maxComplete},{_bonusPoints}";
+        return $"{base.Serialize()},{_completedCount},{_maxComplete},{_bonusPoints}";
     }
     protected override void Deserialize(List<string> rowValues)
     {

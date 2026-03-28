@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 
+/*
+ *  Showing creativity and exceeding requirements:
+ *   Added a daily goal, which is an eternal goal that gives 50% bonus for completing it each day.
+ *   
+ */
+
 class Program
 {
     static void DisplayMenu()
@@ -19,6 +25,7 @@ class Program
         Console.WriteLine("  1. Simple Goal");
         Console.WriteLine("  2. Eternal Goal");
         Console.WriteLine("  3. Checklist Goal");
+        Console.WriteLine("  4. Daily Goal");
     }
     static void ListGoals(List<Goal> goals)
     {
@@ -88,6 +95,9 @@ class Program
                         case "3":
                             newGoal = new ChecklistGoal();
                             break;
+                        case "4":
+                            newGoal = new DailyGoal();
+                            break;
                     }
 
                     // Exit if the goal was not assigned
@@ -120,6 +130,9 @@ class Program
                         // Save each goal to the file
                         foreach (Goal goal in goals)
                         {
+                            // Write the goal type to the file
+                            writer.Write($"{goal.GetGoalType()},");
+
                             // Write the serialized data to the file
                             writer.WriteLine(goal.Serialize());
                         }
@@ -169,6 +182,9 @@ class Program
                                     break;
                                 case "ChecklistGoal":
                                     goals.Add(new ChecklistGoal(rowValues));
+                                    break;
+                                case "DailyGoal":
+                                    goals.Add(new DailyGoal(rowValues));
                                     break;
                             }
                         }

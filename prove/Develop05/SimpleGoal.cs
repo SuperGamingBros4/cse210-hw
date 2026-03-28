@@ -12,7 +12,11 @@ public class SimpleGoal : Goal
     {
 
     }
-    
+
+    public override string GetGoalType()
+    {
+        return "SimpleGoal";
+    }
     public override bool IsComplete()
     {
         return _completed;
@@ -24,7 +28,7 @@ public class SimpleGoal : Goal
     public override string Serialize()
     {
         // Serialize the goal to be saved
-        return $"SimpleGoal,{base.Serialize()},{_completed}";
+        return $"{base.Serialize()},{_completed}";
     }
     protected override void Deserialize(List<string> rowValues)
     {
