@@ -4,7 +4,7 @@ using System.Collections.Generic;
 /*
  *  Showing creativity and exceeding requirements:
  *   Added a daily goal, which is an eternal goal that gives 50% bonus for completing it each day.
- *   
+ *   Added a level incentive, where the user is shown how many points they need in order to reach the next level.
  */
 
 class Program
@@ -48,6 +48,24 @@ class Program
 
         return filename;
     }
+    static int GetPointsForLevel(int level)
+    {
+        // Quadratic growth for points
+        int points = 25*level*level - 25*level;
+
+        return points;
+    }
+    static int GetLevel(int points)
+    {
+        // Prevent taking the logarithm of a zero or negative number
+        if (points <= 0)
+            return 1;
+
+        
+        double level = Math.Sqrt((double)points/25 + 0.25) + 0.5;
+
+        return (int)Math.Floor(level);
+    }
 
     static void Main(string[] args)
     {
@@ -55,12 +73,26 @@ class Program
         List<Goal> goals = new List<Goal>();
 
         int points = 0;
+        int level = 1;
 
         bool running = true;
         while (running)
         {
+            if (level != GetLevel(points))
+            {
+                // Update the user's level
+                level = GetLevel(points);
+
+                // Show a congratulating message
+                Console.WriteLine($"Great job! You are now level {level}.");
+            }
+
+            // Show the user's level
+            Console.WriteLine($"\nYou are level {level}.");
             // Show how many points the user has
-            Console.WriteLine($"\nYou have {points} points.\n");
+            Console.WriteLine($"You have {points} points.");
+            // Show how many points the user needs to get the next level
+            Console.WriteLine($"Next level: {GetPointsForLevel(level+1)} points.\n");
 
             // Show the menu to the user
             DisplayMenu();
@@ -157,6 +189,9 @@ class Program
 
                         // Read the points from the top of the file
                         points = int.Parse(reader.ReadRow()[0]);
+
+                        // Set the user's level based off of the points
+                        level = GetLevel(points);
 
                         // Clear the current goals
                         goals.Clear();
