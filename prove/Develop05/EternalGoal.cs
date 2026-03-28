@@ -4,6 +4,10 @@ public class EternalGoal : Goal
     {
 
     }
+    public EternalGoal(List<string> rowValues) : base(rowValues)
+    {
+
+    }
 
     public override bool IsComplete()
     {
@@ -13,5 +17,15 @@ public class EternalGoal : Goal
     public override void Complete()
     {
        // Do nothing 
+    }
+    public override string Serialize()
+    {
+        // Serialize the goal to be saved
+        return $"EternalGoal,{base.Serialize()}";
+    }
+    protected override void Deserialize(List<string> rowValues)
+    {
+        // Load the common values
+        base.Deserialize(rowValues);
     }
 }

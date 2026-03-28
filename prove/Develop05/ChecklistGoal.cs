@@ -10,6 +10,10 @@ public class ChecklistGoal : Goal
     {
 
     }
+    public ChecklistGoal(List<string> rowValues) : base(rowValues)
+    {
+
+    }
 
     public override void Prompt()
     {
@@ -80,5 +84,20 @@ public class ChecklistGoal : Goal
             // to avoid going over the goal
             _completedCount++;
         }
+    }
+    public override string Serialize()
+    {
+        // Serialize the goal to be saved
+        return $"ChecklistGoal,{base.Serialize()},{_completedCount},{_maxComplete},{_bonusPoints}";
+    }
+    protected override void Deserialize(List<string> rowValues)
+    {
+        // Load the common values
+        base.Deserialize(rowValues);
+
+        // Load the values from the row
+        _completedCount = int.Parse(rowValues[4]);
+        _maxComplete = int.Parse(rowValues[5]);
+        _bonusPoints = int.Parse(rowValues[6]);
     }
 }

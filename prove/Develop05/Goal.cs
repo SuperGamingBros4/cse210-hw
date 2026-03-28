@@ -10,6 +10,10 @@ public abstract class Goal
     {
 
     }
+    public Goal(List<string> rowValues)
+    {
+        Deserialize(rowValues);
+    }
 
     public virtual void Prompt()
     {
@@ -54,6 +58,19 @@ public abstract class Goal
             completedChar = 'X';
 
         return $"[{completedChar}] {_name} ({_description})";
+    }
+    public virtual string Serialize()
+    {
+        string savedName = _name.Replace("\"","\"\"");
+        string savedDescription = _description.Replace("\"","\"\"");
+
+        return $"\"{savedName}\",\"{savedDescription}\",{_points}";
+    }
+    protected virtual void Deserialize(List<string> rowValues)
+    {
+        _name = rowValues[1];
+        _description = rowValues[2];
+        _points = int.Parse(rowValues[3]);
     }
 
     public abstract bool IsComplete();

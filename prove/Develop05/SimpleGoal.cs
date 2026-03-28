@@ -1,8 +1,14 @@
+using System.Collections.Generic;
+
 public class SimpleGoal : Goal
 {
     private bool _completed = false;
 
     public SimpleGoal() : base()
+    {
+
+    }
+    public SimpleGoal(List<string> rowValues) : base(rowValues)
     {
 
     }
@@ -14,5 +20,18 @@ public class SimpleGoal : Goal
     public override void Complete()
     {
         _completed = true;
+    }
+    public override string Serialize()
+    {
+        // Serialize the goal to be saved
+        return $"SimpleGoal,{base.Serialize()},{_completed}";
+    }
+    protected override void Deserialize(List<string> rowValues)
+    {
+        // Load the common values
+        base.Deserialize(rowValues);
+
+        // Load the values from the row
+        _completed = bool.Parse(rowValues[4]);
     }
 }

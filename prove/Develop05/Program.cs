@@ -29,7 +29,7 @@ class Program
             Goal goal = goals[i];
 
             // Display the goal
-            Console.Write($"  {i+1}. ");
+            Console.Write($"  {i + 1}. ");
             Console.WriteLine(goal.GetDisplay());
         }
     }
@@ -106,9 +106,80 @@ class Program
                     break;
                 // 3. Save goals
                 case "3":
+                    try
+                    {
+                        // Prompt for the save file
+                        string saveFileName = PromptFileName();
+
+                        // Create a StreamWriter for the file
+                        StreamWriter writer = new StreamWriter(saveFileName);
+
+                        // Write the points to the top of the file
+                        writer.WriteLine(points);
+
+                        // Save each goal to the file
+                        foreach (Goal goal in goals)
+                        {
+                            // Write the serialized data to the file
+                            writer.WriteLine(goal.Serialize());
+                        }
+
+                        // Close the file
+                        writer.Close();
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        Console.WriteLine("File not found...");
+                    }
                     break;
                 // 4. Load goals
                 case "4":
+                    try
+                    {
+                        // Prompt for the load file
+                        string loadFileName = PromptFileName();
+
+                        // Create a CSVReader for the file
+                        CSVReader reader = new CSVReader(loadFileName);
+
+                        // Read the points from the top of the file
+                        points = int.Parse(reader.ReadRow()[0]);
+
+                        // Clear the current goals
+                        goals.Clear();
+
+                        // Read each goal from the file
+                        while (true)
+                        {
+                            // Read the current line from the file
+                            List<string> rowValues = reader.ReadRow();
+
+                            // Stop if the line is empty
+                            if (rowValues == null)
+                                break;
+
+                            // Determine which goal it is
+                            switch (rowValues[0])
+                            {
+                                case "SimpleGoal":
+                                    goals.Add(new SimpleGoal(rowValues));
+                                    break;
+                                case "EternalGoal":
+                                    goals.Add(new EternalGoal(rowValues));
+                                    break;
+                                case "ChecklistGoal":
+                                    goals.Add(new ChecklistGoal(rowValues));
+                                    break;
+                            }
+                        }
+
+                        // Close the file
+                        reader.Close();
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        Console.WriteLine("File not found...");
+                    }
                     break;
                 // 5. Record event
                 case "5":
@@ -126,7 +197,8 @@ class Program
                     // Get the goal from the list
                     Goal completedGoal = goals[completedGoalIndex];
 
-                    if (!completedGoal.IsComplete()){
+                    if (!completedGoal.IsComplete())
+                    {
                         // Complete the goal
                         completedGoal.Complete();
 
