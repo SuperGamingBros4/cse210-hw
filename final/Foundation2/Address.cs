@@ -51,7 +51,7 @@ public class Address
         }
         else
         {
-            string province = GetState();
+            string province = GetProvince();
             string country = GetCountry();
 
             // Return the all of the values of the address formatted
