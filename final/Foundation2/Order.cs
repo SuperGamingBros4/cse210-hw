@@ -68,11 +68,11 @@ public class Order
             // Do not add a newline if this is the final product in the order
             if (i == products.Count - 1)
             {
-                packingLabel += $"{product.GetID()}, {product.GetName()}";
+                packingLabel += $"ID: {product.GetID()}, {product.GetName()}";
             }
             else
             {
-                packingLabel += $"{product.GetID()}, {product.GetName()}\n";
+                packingLabel += $"ID: {product.GetID()}, {product.GetName()}\n";
             }
         }
 
