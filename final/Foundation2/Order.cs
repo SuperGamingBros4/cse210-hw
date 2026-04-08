@@ -12,10 +12,6 @@ public class Order
     {
         _products.Add(product);
     }
-    public void RemoveProduct(Product product)
-    {
-        _products.Remove(product);
-    }
     public double GetProductsCost()
     {
         double total = 0;
