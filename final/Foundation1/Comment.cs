@@ -8,4 +8,9 @@ public class Comment
         _author = author;
         _text = text;
     }
+
+    public string GetDisplay()
+    {
+        return $"{_author}: {_text}";
+    }
 }

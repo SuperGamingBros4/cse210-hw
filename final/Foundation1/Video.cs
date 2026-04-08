@@ -1,3 +1,5 @@
+using System;
+
 public class Video
 {
     public string _title;
@@ -34,7 +36,7 @@ public class Video
         // Display the comments on the video
         foreach (Comment comment in _comments)
         {
-            Console.WriteLine($"  {comment._author}: {comment._text}");
+            Console.WriteLine($"  {comment.GetDisplay()}");
         }
     }
 }
