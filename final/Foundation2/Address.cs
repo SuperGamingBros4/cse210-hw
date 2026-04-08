@@ -13,49 +13,25 @@ public class Address
         _country = country;
     }
 
-    public string GetStreetAddress()
-    {
-        return _streetAddress;
-    }
-    public string GetCity()
-    {
-        return _city;
-    }
-    public string GetProvince()
-    {
-        return _provinceOrState;
-    }
-    public string GetState()
-    {
-        return _provinceOrState;
-    }
-    public string GetCountry()
-    {
-        return _country;
-    }
-
     public bool IsInUSA()
     {
         // Return if the country of the address is the USA
-        return GetCountry() == "USA";
+        return _country == "USA";
     }
     public string GetDisplay()
     {
-        string streetAddress = GetStreetAddress();
-        string city = GetCity();
         if (IsInUSA()) {
-            string state = GetState();
+            string state = _provinceOrState;
 
             // Return the all of the values of the address formatted
-            return $"{streetAddress}\n{city}, {state}";
+            return $"{_streetAddress}\n{_city}, {state}";
         }
         else
         {
-            string province = GetProvince();
-            string country = GetCountry();
+            string province = _provinceOrState;
 
             // Return the all of the values of the address formatted
-            return $"{streetAddress}\n{city}, {province}\n{country}";
+            return $"{_streetAddress}\n{_city}, {province}\n{_country}";
         }
     }
 }

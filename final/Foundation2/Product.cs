@@ -34,6 +34,6 @@ public class Product
     public double GetTotalCost()
     {
         // Return the price per unit times the quantity
-        return GetPricePerUnit() * GetQuantity();
+        return _pricePerUnit * GetQuantity();
     }
 }

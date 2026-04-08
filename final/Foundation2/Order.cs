@@ -8,29 +8,20 @@ public class Order
         _customer = customer;
     }
     
-    public List<Product> GetProducts()
-    {
-        return _products;
-    }
-    public Customer GetCustomer()
-    {
-        return _customer;
-    }
-
     public void AddProduct(Product product)
     {
-        GetProducts().Add(product);
+        _products.Add(product);
     }
     public void RemoveProduct(Product product)
     {
-        GetProducts().Remove(product);
+        _products.Remove(product);
     }
     public double GetProductsCost()
     {
         double total = 0;
 
         // Add the price of each product in the order
-        foreach (Product product in GetProducts())
+        foreach (Product product in _products)
         {
             total += product.GetTotalCost();
         }
@@ -39,7 +30,7 @@ public class Order
     }
     public double GetShippingCost()
     {
-        if (GetCustomer().IsInUSA())
+        if (_customer.IsInUSA())
         {
             // $5 shipping cost if in the USA
             return 5.0;
@@ -59,14 +50,13 @@ public class Order
         string packingLabel = "";
 
         // Add the product id and name for each product in the order
-        List<Product> products = GetProducts();
-        for (int i = 0; i < products.Count; i++)
+        for (int i = 0; i < _products.Count; i++)
         {
             // Get the current product from the list
-            Product product = products[i];
+            Product product = _products[i];
 
             // Do not add a newline if this is the final product in the order
-            if (i == products.Count - 1)
+            if (i == _products.Count - 1)
             {
                 packingLabel += $"ID: {product.GetID()}, {product.GetName()}";
             }
@@ -80,6 +70,6 @@ public class Order
     }
     public string GetShippingLabel()
     {
-        return GetCustomer().GetShippingLabel();
+        return _customer.GetShippingLabel();
     }
 }

@@ -8,26 +8,16 @@ public class Customer
         _name = name;
         _address = address;
     }
-
-    public string GetName()
-    {
-        return _name;
-    }
-    public Address GetAddress()
-    {
-        return _address;
-    }
     
     public bool IsInUSA()
     {
-        return GetAddress().IsInUSA();
+        return _address.IsInUSA();
     }
     public string GetShippingLabel()
     {
-        string name = GetName();
-        string addressDisplay = GetAddress().GetDisplay();
+        string addressDisplay = _address.GetDisplay();
 
         // Return the customer's name and address
-        return $"{name}\n{addressDisplay}";
+        return $"{_name}\n{addressDisplay}";
     }
 }
