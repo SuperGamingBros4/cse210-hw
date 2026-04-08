@@ -14,26 +14,13 @@ public class Product
         _quantity = quantity;
     }
 
-    public int GetID()
+    public string GetDisplay()
     {
-        return _id;
+        return $"ID: {_id}, {_name}";
     }
-    public string GetName()
-    {
-        return _name;
-    }
-    public double GetPricePerUnit()
-    {
-        return _pricePerUnit;
-    }
-    public int GetQuantity()
-    {
-        return _quantity;
-    }
-
     public double GetTotalCost()
     {
         // Return the price per unit times the quantity
-        return _pricePerUnit * GetQuantity();
+        return _pricePerUnit * _quantity;
     }
 }

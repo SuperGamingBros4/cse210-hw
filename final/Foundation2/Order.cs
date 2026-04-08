@@ -55,14 +55,13 @@ public class Order
             // Get the current product from the list
             Product product = _products[i];
 
-            // Do not add a newline if this is the final product in the order
-            if (i == _products.Count - 1)
+            // Add the item to the packing label
+            packingLabel += product.GetDisplay();
+
+            // Add a newline if this is not the final product in the order
+            if (i != _products.Count - 1)
             {
-                packingLabel += $"ID: {product.GetID()}, {product.GetName()}";
-            }
-            else
-            {
-                packingLabel += $"ID: {product.GetID()}, {product.GetName()}\n";
+                packingLabel += '\n';
             }
         }
 
