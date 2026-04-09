@@ -15,7 +15,7 @@ public abstract class Activity
         // Return the average speed of the event in kph
         return GetDistance() / _minutes * 60;
     }
-    public virtual double GetPace()
+    public double GetPace()
     {
         // Return the average pace of the event in min/km
         return _minutes / GetDistance();
