@@ -2,7 +2,7 @@ public class OutdoorGathering : Event
 {
     private string _forecast;
 
-    public OutdoorGathering(string title, string description, string address, string date, string time, string forecast)
+    public OutdoorGathering(string title, string description, Address address, string date, string time, string forecast)
         : base(title, description, address, date, time)
     {
         // Set the attributes

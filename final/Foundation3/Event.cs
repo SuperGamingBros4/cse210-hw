@@ -2,11 +2,11 @@ public abstract class Event
 {
     private string _title;
     private string _description;
-    private string _address;
+    private Address _address;
     private string _date;
     private string _time;
 
-    public Event(string title, string description, string address, string date, string time)
+    public Event(string title, string description, Address address, string date, string time)
     {
         // Set the attributes
         _title = title;

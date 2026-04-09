@@ -3,7 +3,7 @@ public class Lecture : Event
     private string _speakerName;
     private int _capacity;
 
-    public Lecture(string title, string description, string address, string date, string time, string speakerName, int capacity)
+    public Lecture(string title, string description, Address address, string date, string time, string speakerName, int capacity)
         : base(title, description, address, date, time)
     {
         // Set the attributes
