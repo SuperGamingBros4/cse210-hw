@@ -28,20 +28,20 @@ public class Address
         // Return if the country of the address is the USA
         return _country == "USA";
     }
-    public string GetDisplay()
+    public string GetInlineDisplay()
     {
         if (IsInUSA()) {
             string state = _provinceOrState;
 
             // Return the all of the values of the address formatted
-            return $"{_streetAddress}\n{_city}, {state}";
+            return $"{_streetAddress}, {_city}, {state}";
         }
         else
         {
             string province = _provinceOrState;
 
             // Return the all of the values of the address formatted
-            return $"{_streetAddress}\n{_city}, {province}\n{_country}";
+            return $"{_streetAddress}, {_city}, {province}, {_country}";
         }
     }
 }
