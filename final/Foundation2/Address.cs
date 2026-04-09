@@ -1,16 +1,27 @@
+
 public class Address
 {
     private string _streetAddress;
     private string _city;
-    private string _provinceOrState; // or state
+    private string _provinceOrState;
     private string _country;
 
     public Address(string streetAddress, string city, string provinceOrState, string country)
     {
+        // Set the attributes
         _streetAddress = streetAddress;
         _city = city;
         _provinceOrState = provinceOrState;
         _country = country;
+    }
+    public Address(string streetAddress, string city, string provinceOrState)
+    {
+        // Assumed country is USA
+        // Set the attributes
+        _streetAddress = streetAddress;
+        _city = city;
+        _provinceOrState = provinceOrState;
+        _country = "USA";
     }
 
     public bool IsInUSA()

@@ -5,7 +5,7 @@ class Program
     static void Main(string[] args)
     {
         // Create a USA Customer
-        Customer customerUSA = new Customer("Lisa Simpson", new Address("472 Evergreen Terrace", "Springfield", "OR", "USA"));
+        Customer customerUSA = new Customer("Lisa Simpson", new Address("472 Evergreen Terrace", "Springfield", "OR"));
 
         // Create an Order
         Order order1 = new Order(customerUSA);
